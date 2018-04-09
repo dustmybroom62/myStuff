@@ -10,6 +10,9 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
+import com.microsoft.appcenter.AppCenter;
+import com.microsoft.appcenter.analytics.Analytics;
+import com.microsoft.appcenter.crashes.Crashes;
 
 public class ShootingGame extends AppCompatActivity implements View.OnClickListener {
 
@@ -25,6 +28,9 @@ public class ShootingGame extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_shooting_game);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        AppCenter.start(getApplication(), "db82c739-a322-46c6-8917-31637758867b",
+                Analytics.class, Crashes.class);
 
         // Get a reference to the Custom View
         drawView = (DrawView) findViewById(R.id.drawView);
