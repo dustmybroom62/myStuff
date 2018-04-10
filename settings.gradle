@@ -1,1 +1,1 @@
-include ':android/ShootingGameFinal/app'
+include ':android'
