@@ -1,0 +1,16 @@
+---
+applications:
+- name: web-app
+  memory: 32M
+  disk_quota: 256M
+  random-route: true
+  buildpack: "https://github.com/cloudfoundry/ruby-buildpack#v1.6.47"
+
+# Buildpack locked to v1.6.47 which supports 2.4.0
+#
+# To view compatible Ruby versions, you can look at the release notes
+# https://github.com/cloudfoundry/ruby-buildpack/releases
+#
+# To use the newest buildpack you can replace line 7 with
+#   buildpack: https://github.com/cloudfoundry/ruby-buildpack.git
+
