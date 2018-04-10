@@ -1,0 +1,18 @@
+Changelog
+v1.0.0
+  - Initial Release
+
+v1.0.1 
+  - Bump Ruby version to 2.4.0 because SAP is not on Ruby
+    Buildpack v1.6.37 yet
+  - Restore worker-app in Windows zip to Unix file format
+
+v1.0.2
+  - Add URL buildpack because BlueMix is still on BuildPack v1.6.16 and we
+    need a newer version for current Ruby versions
+
+v1.0.3
+  - Locked the Ruby Buildpack to v1.6.47 as 1.7.0 dropped support for 
+    Ruby 2.4.0
+  - Added notes to manifest.yml on how to see supported Ruby versions
+
