@@ -1,0 +1,46 @@
+[
+    {
+        "name": "Cooper",
+        "species": "Dog",
+        "breed": "Catahoula Leopard",
+        "gender": "male",
+        "age": 11,
+        "traits": [
+            "crazy",
+            "friendly"
+        ]
+    },
+    {
+        "name": "Garfield",
+        "species": "Cat",
+        "breed": "Tabby",
+        "gender": "male",
+        "age": 50,
+        "traits": [
+            "fat",
+            "hungry"
+        ]
+    },
+    {
+        "name": "Snoopy",
+        "species": "Dog",
+        "breed": "Beagle",
+        "gender": "male",
+        "age": 70,
+        "traits": [
+            "loyal",
+            "friendly"
+        ]
+    },
+    {
+        "name": "Lola",
+        "species": "Dog",
+        "breed": "Beagle",
+        "gender": "female",
+        "age": 5,
+        "traits": [
+            "loyal",
+            "friendly"
+        ]
+    }
+]

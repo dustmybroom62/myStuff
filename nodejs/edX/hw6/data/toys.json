@@ -1,0 +1,16 @@
+[
+    {
+        "id": "1234",
+        "name": "dog chew toy",
+        "price": 10.99,
+        "inStock": 10,
+        "availableColors": []
+    },
+    {
+        "id": "5678",
+        "name": "dog pillow",
+        "price": 25.99,
+        "inStock": 10,
+        "availableColors": []
+    }
+]
