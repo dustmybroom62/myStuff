@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import MovieItem from './MovieItem';
 
 const FlatListMovies = props => {
-  console.log('props2: ' + props);
+  //console.log('props2: ' + props);
   return (
   <FlatList
     keyExtractor={item => item.imdbID}

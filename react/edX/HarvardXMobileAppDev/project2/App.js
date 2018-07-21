@@ -1,7 +1,7 @@
 
 import React from 'react';
 import {TouchableOpacity, View, ScrollView, Button, Image, Text, TextInput, StyleSheet} from 'react-native'
-import {search} from './mockData'
+import {apiSettings} from './api'
 import MovieItem from './MovieItem'
 import {Constants} from 'expo'
 import {
@@ -28,16 +28,11 @@ const AppNavigator = createStackNavigator(
   }
 );
 
-const _settings = {apikey: ''};
-
 export default class App extends React.Component {
-  state = {
-    movies: [...search.Search]
-  };
 
   setApiKey = apikey => {
-    console.log(apikey);
-    _settings.apikey = apikey;
+    //console.log(apikey);
+    apiSettings.apikey = apikey;
     this.setState(prevState => ({
       apikey: apikey
     }));
@@ -47,7 +42,6 @@ export default class App extends React.Component {
     return (
       <AppNavigator
         screenProps={{
-          movies: [...this.state.movies],
           setApiKey: this.setApiKey
         }}
       />

@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextInput, Text, Button, View, StyleSheet } from 'react-native';
-
+import {fetchMovies, fetchMovieDetail} from '../api'
 import FlatListMovies from '../FlatListMovies';
 
 export default class MovieListScreen extends React.Component {
@@ -18,16 +18,24 @@ export default class MovieListScreen extends React.Component {
   };
 
   state = {
-    showMovies: true,
+    showMovies: false,
   };
 
-  searchChange = (search) => {
-    this.setState({search});
+  searchChange = async (search) => {
+    let movies = await fetchMovies(search);
+    //console.log('movies: ' + movies);
+    this.setState({
+      search: search,
+      movies: movies,
+      showMovies: movies && 0 !== movies.length
+    });
+
   };
 
-  handleSelectMovie = movie => {
-    console.log('in handleSelectMovie: ' + movie)
-    this.props.navigation.push('MovieDetail', movie);
+  handleSelectMovie = async (movie) => {
+    //console.log('in handleSelectMovie: ' + movie)
+    let detail = await fetchMovieDetail(movie.imdbID);
+    this.props.navigation.push('MovieDetail', {...movie, detail: detail});
   };
 
   render() {
@@ -41,7 +49,7 @@ export default class MovieListScreen extends React.Component {
         {!this.state.showMovies && <Text style={{padding: 4}}>No results</Text>}
         {this.state.showMovies && (
           <FlatListMovies
-            movies={this.props.screenProps.movies}
+            movies={this.state.movies}
             onSelectMovie={this.handleSelectMovie}
           />
         )}
