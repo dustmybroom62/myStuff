@@ -17,7 +17,7 @@ export default class MovieRating extends React.Component {
     if (val > 66) {
       color = 'green';
     } else if (val > 33) {
-      color = 'yellow';
+      color = 'orange';
     } else {
       color = 'red';
     }

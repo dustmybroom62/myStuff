@@ -25,7 +25,7 @@ export const fetchMovies = async (search) => {
 }
 
 export const fetchMovieDetail = async (movieId) => {
-  const url = `${baseUrl}?apikey=${apiSettings.apikey}&i=${movieId}`;
+  const url = `${baseUrl}?apikey=${apiSettings.apikey}&plot=full&i=${movieId}`;
   const response = await fetch(url);
   //console.log('fetchMovieDetail response: ' + response);
   const results = await response.json();
