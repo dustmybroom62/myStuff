@@ -15,7 +15,11 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.dustmybroom62.project2"
+    },
+    "android": {
+      "package": "com.dustmybroom62.project2"
     }
   }
 }
