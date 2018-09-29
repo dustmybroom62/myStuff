@@ -290,21 +290,20 @@ def playGame(wordList):
     gameOver = False
     while not gameOver:
         cmd = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
-        if 'e' == cmd:
-            gameOver = True
-            break
-
-        if 'n' == cmd:
-            currentHand = dealHand(HAND_SIZE)
-            playHand(currentHand.copy(), wordList, HAND_SIZE)
-        elif 'r' == cmd:
-            if None is currentHand:
-                print("You have not played a hand yet. Please play a new hand first!")
-                print()
+        if cmd in ['e', 'n', 'r']:
+            if 'e' == cmd:
+                gameOver = True
             else:
-                playHand(currentHand.copy(), wordList, HAND_SIZE)
+                if 'n' == cmd:
+                 currentHand = dealHand(HAND_SIZE)
+                if None is currentHand:
+                    print("You have not played a hand yet. Please play a new hand first!")
+                    print()
+                else:
+                    playHand(currentHand.copy(), wordList, HAND_SIZE)
         else:
             print("Invalid command.")
+            print()
 
    
 
@@ -314,5 +313,9 @@ def playGame(wordList):
 # Build data structures used for entire session and play game
 #
 if __name__ == '__main__':
-    wordList = loadWords()
-    playGame(wordList)
+    def run():
+        wordList = loadWords()
+        playGame(wordList)
+
+
+    run()
