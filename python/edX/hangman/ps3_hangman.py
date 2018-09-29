@@ -116,7 +116,6 @@ def getGuess():
     return input('Please guess a letter: ')
 
 
-
 def scrubInput(g):
     global a2z
     if 1 != len(g):
