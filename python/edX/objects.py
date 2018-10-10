@@ -1,10 +1,13 @@
 from math import sin, cos, atan2, radians, degrees, sqrt, tan
 
 class Force:
+
     def __init__(self, magnitude, angle):
         self.magnitude = magnitude
         self.angle = angle
 
+    def get_x(self):
+        return self.x
 
     def get_horizontal(self):
         return self.magnitude * cos(radians(self.angle))
@@ -296,5 +299,13 @@ def total_cost(burritos):
 print('=' * 40)
 print(total_cost([newBurrito, a_burrito, burrito_3]))
 
+class Foo:
+    # def __init__(self):
+    #     print(self.attr_1)
+
+    attr_1 = 'attr_1 is a member of Foo'
+
+x = Foo()
+print(x.attr_1)
 
     
