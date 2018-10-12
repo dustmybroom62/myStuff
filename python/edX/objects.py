@@ -309,3 +309,28 @@ x = Foo()
 print(x.attr_1)
 
     
+class Spell(object):
+    def __init__(self, incantation, name):
+        self.incantation = incantation
+        self.name = name
+
+    def get_description(self):
+        return "No Description"
+
+    def __str__(self):
+        return self.name + ' ' + self.incantation + '\n' + self.get_description()
+
+class Accio(Spell):
+    def __init__(self):
+        Spell.__init__(self, 'Accio', 'Summoning Charm')
+
+class Confundo(Spell):
+    def __init__(self):
+        Spell.__init__(self, 'Confundo', 'Confundus Charm')
+
+    def get_description(self):
+        return "A charm that confunds the target."
+
+spell = Accio()
+print(spell)
+print(Confundo())
