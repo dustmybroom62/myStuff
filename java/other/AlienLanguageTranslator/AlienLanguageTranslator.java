@@ -1,4 +1,5 @@
-public class AlienLanguageTranslator {
+
+public class AlienLanguageTranslator { // implements LanguageTranslator {
     private char _a = 'a';
     private char _A = 'A';
     private char _z = 'z';
@@ -6,10 +7,10 @@ public class AlienLanguageTranslator {
 	private char lim = 26;
     private int _offset = 3;
     
-	public String DEFAULT_TRANSLATION = "EN";
+	//public String DEFAULT_TRANSLATION = "EN";
 	
 	// Translates the language from default language
-	public String translate(String languageTokens, int offset) {
+	private String translate(String languageTokens, int offset) {
 	    String result = "";
 	    for (int i = 0; i < languageTokens.length(); i++) {
 			char base = 0;
@@ -37,11 +38,14 @@ public class AlienLanguageTranslator {
 	}
 }
 
-public class AlienLanguageTranslatorTest{
-    public static void main(String args[]){
-		AlienLanguageTranslator at = new AlienLanguageTranslator();
-		String x = at.fromDefaultLanguage("To day");
-		System.out.println("alien: " + x);
-		System.out.println("default: " + at.toDefaultLanguage(x));
-	}
+public class AlienLanguageTranslatorTest {
+    public static void main(String args[]) {
+		System.out.println("start");
+        // AlienLanguageTranslator at = new AlienLanguageTranslator();
+        // String x = at.fromDefaultLanguage("aaTo day");
+        // System.out.println("alien: " + x);
+		// System.out.println("default: " + at.toDefaultLanguage(x));
+		//System.out.println(AlienLanguageTranslator.DEFAULT_TRANSLATION);
+		System.out.println("done");
+    }
 }
