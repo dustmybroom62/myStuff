@@ -1,0 +1,27 @@
+@model GlobalCityManager.Models.Country
+
+<h1>Update Country</h1>
+<div>
+    @Html.ValidationSummary()
+</div>
+<form method="post" enctype="multipart/form-data" asp-controller="Country" asp-action="Update">
+    @Html.HiddenFor( c => c.Code )
+    <table>
+        <tr>
+            <th>@Html.LabelFor( c => c.Name )</th>
+            <td>@Html.TextBoxFor( c => c.Name )</td>
+        </tr>
+        <tr>
+            <th>@Html.LabelFor( c => c.Region )</th>
+            <td>@Html.TextBoxFor( c => c.Region )</td>
+        </tr>
+        <tr>
+            <th><img src="/@Model.NationalFlag" title="@Html.NameFor( c => c.NationalFlag )" /></th>
+            <td>Change Flag: <input type="file" name="nationalFlagFile" /></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td><input type="submit" value="Update" /></td>
+        </tr>
+    </table>
+</form>

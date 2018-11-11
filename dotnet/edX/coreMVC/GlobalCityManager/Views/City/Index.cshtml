@@ -1,0 +1,9 @@
+@{ ViewData["Title"] = "Cities"; }
+<h1>Cities</h1>
+<a href="@Url.Action("Create", "City")">
+<div class="btn btn-default">Add New City</div>
+</a>
+@await Html.PartialAsync("_CityList")
+<a href="@Url.Action("Create", "City")">
+<div class="btn btn-default">Add New City</div>
+</a>

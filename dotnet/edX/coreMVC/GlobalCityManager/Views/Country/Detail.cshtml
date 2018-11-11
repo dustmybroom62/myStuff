@@ -1,0 +1,25 @@
+@model GlobalCityManager.Models.CountryDetail
+@{ ViewData["Title"] = $"{Model.Name} - Detail"; }
+
+<h1>@Model.Name - Detail</h1>
+<table>
+    <tr>
+        <th>@Html.LabelFor( c => c.NationalFlag )</th>
+        <td><img src="/@Model.NationalFlag" title="@Html.NameFor( c => c.NationalFlag )"></td>
+    </tr>
+    <tr>
+        <th>@Html.LabelFor( c => c.Code )</th>
+        <td>@Model.Code</td>
+    </tr>
+    <tr>
+        <th>@Html.LabelFor( c => c.Name )</th>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <th>@Html.LabelFor( c => c.Region )</th>
+        <td>@Model.Region</td>
+    </tr>
+</table>
+
+<h2>Cities</h2>
+@await Html.PartialAsync("_CityList", Model.CityList)

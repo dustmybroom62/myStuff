@@ -1,0 +1,26 @@
+@using GlobalCityManager.Models
+@model IEnumerable<City>
+
+<table>
+    <tr>
+        <th>@Html.LabelFor( c => c.FirstOrDefault().Id )</th>
+        <th>@Html.LabelFor( c => c.FirstOrDefault().CountryCode )</th>
+        <th>@Html.LabelFor( c => c.FirstOrDefault().Name )</th>
+        <th>@Html.LabelFor( c => c.FirstOrDefault().District )</th>
+        <th>@Html.LabelFor( c => c.FirstOrDefault().Population )</th>
+        <th><label>Update</label></th>
+        <th><label>Delete</label></th>
+    </tr>
+@foreach (var c in Model)
+{
+    <tr>
+        <td>@c.Id</td>
+        <td>@c.CountryCode</td>
+        <td>@c.Name</td>
+        <td>@c.District</td>
+        <td>@c.Population.ToString()</td>
+        <td>@Html.ActionLink("Update", "Update", new { id=c.Id })</td>
+        <td>@Html.ActionLink("Delete", "Delete", new { id=c.Id })</td>
+    </tr>
+}
+</table>

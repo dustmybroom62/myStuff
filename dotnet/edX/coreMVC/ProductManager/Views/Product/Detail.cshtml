@@ -1,0 +1,20 @@
+@model ProductManager.Models.Product
+
+<h1>Product Detail</h1>
+
+    <div class="row">
+        <div class="col-md-6">@Html.DisplayNameFor(p => p.ID)</div>
+        <div class="col-md-6">@Html.DisplayFor(p => p.ID)</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">@Html.DisplayNameFor(p => p.Name)</div>
+        <div class="col-md-6">@Html.DisplayFor(p => p.Name)</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">@Html.DisplayNameFor(p => p.Type)</div>
+        <div class="col-md-6">@Html.ActionLink(Model.Type.Name, "IndexByTypeID", new { id = Model.TypeID })</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">@Html.DisplayNameFor(p => p.Price)</div>
+        <div class="col-md-6">@Html.DisplayFor(p => p.Price)</div>
+    </div>

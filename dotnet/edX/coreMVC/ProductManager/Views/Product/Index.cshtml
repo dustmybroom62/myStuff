@@ -1,0 +1,25 @@
+@model IList<ProductManager.Models.Product>
+
+<h1>@ViewData["Title"]</h1>
+<div class="row">
+    <div class="col-md-1">ID</div>
+    <div class="col-md-2">Name</div>
+    <div class="col-md-1">Type</div>
+    <div class="col-md-1">Price</div>
+    <div class="col-md-1">Delete</div>
+    <div class="col-md-1">Edit</div>
+    <div class="col-md-1">Detail</div>
+</div>
+@foreach (var p in Model)
+{
+    <div class="row">
+        <div class="col-md-1">@p.ID</div>
+        <div class="col-md-2">@p.Name</div>
+        <div class="col-md-1">@p.Type.Name</div>
+        <div class="col-md-1">@p.Price</div>
+        <div class="col-md-1">@Html.ActionLink("Delete", "Delete", new {id = p.ID})</div>
+        <div class="col-md-1">@Html.ActionLink("Edit", "Edit", new {id = p.ID})</div>
+        <div class="col-md-1">@Html.ActionLink("Detail", "ShowDetail", new {id = p.ID})</div>
+    </div>
+}
+@Html.ActionLink("Add a New Product", "Create")

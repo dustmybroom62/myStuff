@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using MovieApp.Entities;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MovieApp
 {

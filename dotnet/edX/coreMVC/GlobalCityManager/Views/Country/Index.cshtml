@@ -1,0 +1,32 @@
+@using GlobalCityManager.Models
+@model IEnumerable<Country>
+@{ ViewData["Title"] = "Countries"; }
+<h1>Countries</h1>
+
+<a href="@Url.Action("Create", "Country")">
+<div class="btn btn-default">Add New Country</div>
+</a>
+<table>
+    <tr>
+        <th>@Html.LabelFor( c => c.FirstOrDefault().NationalFlag )</th>
+        <th>@Html.LabelFor( c => c.FirstOrDefault().Code )</th>
+        <th>@Html.LabelFor( c => c.FirstOrDefault().Name )</th>
+        <th>@Html.LabelFor( c => c.FirstOrDefault().Region )</th>
+        <th><label>Update</label></th>
+        <th><label>Remove</label></th>
+    </tr>
+@foreach (var c in Model)
+{
+    <tr>
+        <td><img src="/@c.NationalFlag" /></td>
+        <td>@Html.ActionLink(c.Code, "Detail", new { id=c.Code } )</td>
+        <td>@Html.ActionLink(c.Name, "Detail", new { id=c.Code } )</td>
+        <td>@Html.ActionLink(c.Region, "Detail", new { id=c.Code } )</td>
+        <td>@Html.ActionLink("Update", "Update", new { id=c.Code })</td>
+        <td>@Html.ActionLink("Remove", "Remove", new { id=c.Code })</td>
+    </tr>
+}
+</table>
+<a href="@Url.Action("Create", "Country")">
+<div class="btn btn-default">Add New Country</div>
+</a>

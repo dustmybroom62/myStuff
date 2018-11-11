@@ -1,0 +1,13 @@
+@model MyWebApp.Models.Person
+
+<html>
+    <body>
+        @Html.ColorfulHeading(1, "green", "The Film is Updated!")
+        @Html.ColorfulHeading(3, "red", "Isn't that awesome?")
+
+    @Html.FakeTextBoxFor(p => p.ID)<br />
+    @Html.FakeTextBoxFor(p => p.Name)<br />
+    @Html.FakeTextBoxFor(p => p.Age)<br />
+
+    </body>
+</html>

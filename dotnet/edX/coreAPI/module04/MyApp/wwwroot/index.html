@@ -1,0 +1,11 @@
+<html>
+    <body>
+        <script>
+            let d = new Date("2018-11-09T17:04:41-05:00");
+            document.writeln(`${d.getUTCFullYear()}-${d.getUTCMonth()+1}-${d.getUTCDate()} ${d.getUTCHours()}:${d.getUTCMinutes()}:${d.getUTCSeconds()}`);
+            document.writeln('<br/>');
+            let x = new Date(Date.now());
+            document.writeln(`${x.getUTCFullYear()}-${x.getUTCMonth()+1}-${x.getUTCDate()} ${x.getUTCHours()}:${x.getUTCMinutes()}:${x.getUTCSeconds()}`);
+        </script>
+    </body>
+</html>

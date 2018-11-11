@@ -1,0 +1,24 @@
+@using ProductManager.Models
+@model Product
+
+<h1>Add a New Product</h1>
+@using (Html.BeginForm())
+{    
+    <div class="row">
+        <div class="col-md-6">@Html.LabelFor(p => p.Name)</div>
+        <div class="col-md-6">@Html.TextBoxFor(p => p.Name)</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">@Html.LabelFor(p => p.Price)</div>
+        <div class="col-md-6">@Html.TextBoxFor(p => p.Price)</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">@Html.LabelFor(p => p.Type)</div>
+        <div class="col-md-6">@Html.DropDownListFor(p => p.TypeID,
+            new SelectList(DataSource.GetProductTypes(), "ID", "Name"))</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-6"><input type="submit" value="Add" /></div>
+    </div>
+} 
