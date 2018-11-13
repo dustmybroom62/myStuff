@@ -1,0 +1,21 @@
+﻿@using System.Text;
+@using CoreBB.Web.Models
+@model CoreBB.Web.Models.Topic
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<div class="btn btn_danger">
+    @ViewData["Message"]
+</div>
+<form asp-action="Create" method="post">
+    <h1>Original</h1>
+    @Html.PartialAsync("_TopicReading", Model)
+    <hr />
+    <h1>Replies</h1>
+    @foreach (Topic t in Model.InverseReplyToTopic)
+    {
+        @Html.PartialAsync("_TopicReading", t)
+        @Html.PartialAsync("_TopicChildrenReading", t.InverseReplyToTopic)
+    }
+</form>

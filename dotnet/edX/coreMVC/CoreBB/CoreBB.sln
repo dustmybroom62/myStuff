@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2003
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreBB.Web", "CoreBB.Web\CoreBB.Web.csproj", "{1081F0BA-F6DA-42E2-ACFC-F3763330CE23}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{43FDD44F-E647-44D9-B3DA-0540B9C65F3B}"
+	ProjectSection(SolutionItems) = preProject
+		sql\CoreBB.sql = sql\CoreBB.sql
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1081F0BA-F6DA-42E2-ACFC-F3763330CE23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1081F0BA-F6DA-42E2-ACFC-F3763330CE23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1081F0BA-F6DA-42E2-ACFC-F3763330CE23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1081F0BA-F6DA-42E2-ACFC-F3763330CE23}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7F28D90A-598C-40BD-84AE-705210DA8659}
+	EndGlobalSection
+EndGlobal

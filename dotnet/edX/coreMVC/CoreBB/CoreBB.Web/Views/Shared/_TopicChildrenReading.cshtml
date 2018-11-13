@@ -1,0 +1,16 @@
+﻿@using CoreBB.Web.Models
+@model ICollection<CoreBB.Web.Models.Topic>
+
+@{
+    if (null == Model || 0 == Model.Count()) { return; }
+}
+
+<ul class="list-group border-0">
+    @foreach(Topic t in Model)
+    {
+        <li class="list-group-item border-0">
+            @Html.PartialAsync("_TopicReading", t)
+            @Html.PartialAsync("_TopicChildrenReading", t.InverseReplyToTopic)
+        </li>
+    }
+</ul>
