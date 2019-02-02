@@ -22,10 +22,14 @@ public class Maze {
      * with all positions initially open
      */
 	public Maze(int width, int height) {
-    	// TO DO (Part 1)
 	    // Learning concepts to work on:
         // Create, initialize and traverse a bidimensional array
         this.maze = new MazeStatus[height][width];
+        for (int r = 0; r < height; r++) {
+            for (int c = 0; c < width; c++) {
+                this.maze[r][c] = MazeStatus.OPEN;
+            }
+        }
 	}
 
     /**
@@ -41,7 +45,6 @@ public class Maze {
      * specified by its row and column
      */
 	public MazeStatus getPosStatus(int row, int col) {
-		// TO DO (Part 1)
 		// Learning concepts to work on:
 		// accessing an array position by its index
 
@@ -57,7 +60,6 @@ public class Maze {
      * the given status value
      */
 	public void setPosStatus(int row, int col, MazeStatus newStatus) {
-		// TO DO (Part 1)
 		// Learning concepts to work on:
         // changing the value of an array position given by its index
         if (row >= 0 && row < this.maze.length
@@ -73,7 +75,6 @@ public class Maze {
 	public String toString() {
 		String s = "";
 
-		// TO DO (Part 1)
 		// Learning concepts to work on:
 		// traversing an array
         // String concatenation
@@ -109,7 +110,6 @@ public class Maze {
 		 * and next assigning the corresponding status to the array cell
 		 */
 	
-		// TO DO (Part 1)
 		// Learning concepts to work on:
 		// array creation, initialization and traversing
         String[] rows = sMaze.split("\n");
@@ -121,7 +121,7 @@ public class Maze {
                 result[r][c] = MazeStatus.valueOf(cols[c]);
             }
         }
-		return result; // TO DO (Part 1): change appropriately
+		return result;
 		
     }
     
@@ -135,11 +135,16 @@ public class Maze {
      * Returns null if the destination position is outside the limits of the array.
      */
 	public int[] getNeighbourCoords(int row, int col, Movement mov) {
-		// TO DO (Part 2)
 		// Learning concepts to work on:
 		// array creation, initialization and limits checking
 
-		return null; // TO DO: change appropriately
+        int r = row + mov.vShift();
+        int c = col + mov.hShift();
+        if (r >= 0 && r < this.maze.length
+        && c >= 0 && c < this.maze[0].length) {
+            return new int[] {r, c};
+        }
+		return null;
 	}
 	
 
@@ -157,10 +162,23 @@ public class Maze {
      */
     public void followPath(Path path) {
         
-		// TO DO (Part 4)
+		// (Part 4)
 		// Learning concepts to work on:
-		// extracting elements from list, accessing and modifying array positions
-
+        // extracting elements from list, accessing and modifying array positions
+        int[] step = null;
+        while (null != (step = path.extractFirst())) {
+        //for (int[] step = path.extractFirst(); (null != step); step = path.extractFirst()) {
+            int row = step[0], col = step[1];
+            switch (getPosStatus(row, col)) {
+                case OPEN:
+                case VISITED:
+                    setPosStatus(row, col, MazeStatus.VISITED);
+                    break;
+                case GOAL:
+                    break;
+                default:
+                    return;
+            }
+        }
     }
-
 }

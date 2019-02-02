@@ -24,18 +24,32 @@ public class Path {
      * Insert the given coordinates as a new step in the first position of the path
      */
     public void insertFirst(int row, int col) {
-        // TO DO (Part 3)
         // Learning concepts:
         // Insert first element in doubly linked list
+        PathStep pathStep = new PathStep(row, col);
+        pathStep.setNext(first);
+        first = pathStep;
+        if (null == last) {
+            last = pathStep;
+        }
     }
     
     /**
      * Insert the given coordinates as a new step in the last position of the path
      */
     public void insertLast(int row, int col) {
-        // TO DO (Part 3)
         // Learning concepts:
         // Insert last element in doubly linked list
+        PathStep pathStep = new PathStep(row, col);
+        pathStep.setPrev(last);
+        if (null != last) {
+            last.setNext(pathStep);
+        }
+        last = pathStep;
+        if (null == first) {
+            first = pathStep;
+        }
+
     }
     
     /**
@@ -43,11 +57,20 @@ public class Path {
      * If the Path is empty, returns null.
      */
     public int[] extractFirst() {
-        // TO DO (Part 3)
         // Learning concepts:
         // Extract first element of doubly linked list
+        if (null != first) {
+            int[] result = new int[] {first.getRow(), first.getCol()};
+            PathStep next = first.getNext();
+            if (null == next) {
+                first = null; last = null;
+            } else {
+                first = next; first.setPrev(null);
+            }
+            return result;
+        }
 
-        return null;    // TO DO: modify as appropriate
+        return null;
     }
     
     /**
@@ -56,11 +79,20 @@ public class Path {
      */
     public int[] extractLast() {
 
-        // TO DO (Part 3)
         // Learning concepts:
         // Extract last element of doubly linked list
+        if (null != last) {
+            int[] result = new int[] {last.getRow(), last.getCol()};
+            PathStep prev = last.getPrev();
+            if (null == prev) {
+                first = null; last = null;
+            } else {
+                last = prev; last.setNext(null);
+            }
+            return result;
+        }
 
-        return null;    // TO DO: modify as appropriate
+        return null;
     }
     
     /**
@@ -73,7 +105,6 @@ public class Path {
         
         String sPath = "";
         
-        // TO DO (Part 3)
         // Traverse a linked list concatenating the coordinates of each step. 
         // Recommendation: use the toString method in the PathStep class to get the 
         // "(row, col)" String corresponding to the pair of coordinates of each step.
@@ -82,6 +113,10 @@ public class Path {
         // traverse a linked list
         // Important: the Path must not be modified by the method!
         
+        for (PathStep current = first; null != current; current = current.getNext()) {
+            if (sPath.length() > 0) { sPath += ", "; }
+            sPath += current.toString();
+        }
         return sPath;
     }
     

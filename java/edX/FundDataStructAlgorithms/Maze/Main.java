@@ -56,7 +56,7 @@ public class Main {
         maze = new Maze(MazeSamples.sMaze3);
         System.out.println(maze.toString());
 
-/*
+
         // Test Path (parts 3 and 4)
         System.out.println("Test Path");
         
@@ -77,6 +77,6 @@ public class Main {
         System.out.println("Test Path (Part 4)");
         maze.followPath(path);
         System.out.println(maze.toString());
-        */
+        
     }
 }

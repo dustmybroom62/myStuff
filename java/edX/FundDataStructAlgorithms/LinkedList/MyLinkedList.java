@@ -50,14 +50,10 @@ public class MyLinkedList<E extends Comparable<E>> {
      */
     public void insertLast(E info){
         if (null == head) {
-            insert(info);
+            insertFirst(info);
             return;
         }
         Node<E> newNode = new Node<E>(info);
-        if (null == tail) {
-            tail = newNode;
-            return;
-        }
         tail.setNext(newNode);
         tail = newNode;
         // before tail

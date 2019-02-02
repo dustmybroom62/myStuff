@@ -24,17 +24,29 @@ import java.util.List;
      * and maintaining the order of the List
      */
     private static void removeDuplicates(List<Integer> mine){
-        List<Integer> result = new ArrayList<Integer>();
-
-        Iterator<Integer> iter = mine.iterator();
-        while (iter.hasNext()) {
-            Integer e = iter.next();
-            if (result.contains(e)) {
-                iter.remove();
-            } else {
-                result.add(e);
+        for (int indexCur = 0; indexCur < mine.size(); indexCur++) {
+            Integer cur = mine.get(indexCur);
+            int indexLast = mine.lastIndexOf(cur);
+            while (indexCur != indexLast) {
+                mine.remove(indexLast);
+                indexLast = mine.lastIndexOf(cur);
             }
         }
+
+        //// Iterator
+        // List<Integer> result = new ArrayList<Integer>();
+        // Iterator<Integer> iter = mine.iterator();
+        // while (iter.hasNext()) {
+        //     Integer e = iter.next();
+        //     if (result.contains(e)) {
+        //         iter.remove();
+        //     } else {
+        //         result.add(e);
+        //     }
+        // }
+
+        //// forEach
+        // List<Integer> result = new ArrayList<Integer>();
         // mine.forEach( e -> {
         //     if (!result.contains(e)) {
         //         result.add(e);
