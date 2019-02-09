@@ -54,7 +54,17 @@ public class Maze {
         }
         return null; // TO DO: change appropriately
 	}
-	
+    
+        /**
+     * Returns the MazeStatus value corresponding to the given position
+     */
+	public MazeStatus getPosStatus(MazePosition pos) {
+        int[] coords = pos.getCoords();
+        if (null == coords) { return null; }
+        int row = coords[0], col = coords[1];
+		return getPosStatus(row, col);
+	}
+
     /**
      * Sets the cell corresponding to the specified row and column to 
      * the given status value
@@ -67,7 +77,18 @@ public class Maze {
             this.maze[row][col] = newStatus;
         }        
 	}
-	
+
+    /**
+     * Sets the cell corresponding to the specified position to 
+     * the given status value
+     */
+	public void setPosStatus(MazePosition pos, MazeStatus newStatus) {
+        int[] coords = pos.getCoords();
+        if (null == coords) { return; }
+        int row = coords[0], col = coords[1];
+        setPosStatus(row, col, newStatus);
+	}
+    
     /**
      * Creates and returns an String with 
      * the text-based representation of the given Maze
@@ -147,6 +168,23 @@ public class Maze {
 		return null;
 	}
 	
+    /**
+     * Calculates the destination position in the Maze
+     * given an starting position (row, col) and  a Movement (mov)
+     * 
+     * @returns the coordinates of the next position, if its is a valid position. 
+     * Returns null if the destination position is outside the limits of the array.
+     */
+	public MazePosition getNeighbour(MazePosition pos, Movement mov) {
+	    MazePosition newPos = null;
+	    
+	    int[] newCoords = getNeighbourCoords(pos.getCoords()[0], pos.getCoords()[1], mov);
+	    if (newCoords != null) {
+            // TODO: create new MazePosition object with the new coordinates and the received position pos as previous one (from)
+            newPos = new MazePosition(newCoords, pos);
+        }  
+	    return newPos;
+	}
 
     /**
      * Changes the state of the maze positions following the given path.

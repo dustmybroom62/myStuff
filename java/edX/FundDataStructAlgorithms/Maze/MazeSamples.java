@@ -33,4 +33,15 @@ public final class MazeSamples {
 					"#       #   ###\n" +
 					"#       #     x\n" +
 					"###############\n";
+
+	public static final String sMaze4 = 
+					"  ########\n" +
+					"#  #     #\n" +
+					"#  #     #\n" +
+					"#  ###   #\n" +
+					"#        #\n" +
+					"#      ###\n" +
+					"#        x\n" +
+					"###########\n";
+
 }

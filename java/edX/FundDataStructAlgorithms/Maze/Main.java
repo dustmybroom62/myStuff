@@ -2,11 +2,62 @@
  * Main class of the Java program.
  */
 public class Main {
+
+	public static void main(String[] args) {
+		
+        // Test StackPathFinder
+        /*
+		StackPathFinder pf = new StackPathFinder();
+
+		System.out.println("Test StackPathFinder");
+		Maze maze;
+		Path path;
+
+		maze = new Maze(MazeSamples.sMaze2);
+		path = pf.findPath(maze);
+		System.out.println(maze.toString());
+		System.out.println(path.toString());
+
+		maze = new Maze(MazeSamples.sMaze3);
+		path = pf.findPath(maze);
+		System.out.println(maze.toString());
+		System.out.println(path.toString());
+
+		maze = new Maze(MazeSamples.sMaze4);
+		path = pf.findPath(maze);
+		System.out.println(maze.toString());
+        System.out.println(path.toString());
+        */
+        
+		// Test QueuePathFinder
+		QueuePathFinder pf = new QueuePathFinder();
+
+		System.out.println("Test QueuePathFinder");
+		Maze maze;
+		Path path;
+
+		maze = new Maze(MazeSamples.sMaze2);
+		path = pf.findPath(maze);
+		System.out.println(maze.toString());
+		System.out.println(path.toString());
+
+		maze = new Maze(MazeSamples.sMaze3);
+		path = pf.findPath(maze);
+		System.out.println(maze.toString());
+		System.out.println(path.toString());
+
+		maze = new Maze(MazeSamples.sMaze4);
+		path = pf.findPath(maze);
+		System.out.println(maze.toString());
+		System.out.println(path.toString());
+
+	}
     
     /** 
      * Builds a path through the Maze starting at position (0, 0) 
      * and following the given sequence of movements.
      */
+    /*
     public static Path buildPath(Maze maze, Movement[] movs) {
         
         Path path = new Path();
@@ -79,4 +130,5 @@ public class Main {
         System.out.println(maze.toString());
         
     }
+    */
 }
