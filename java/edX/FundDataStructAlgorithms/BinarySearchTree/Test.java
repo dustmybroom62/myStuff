@@ -6,7 +6,7 @@ public class Test {
 	public static void main(String args[]) {
 		// FIFA World Rankings http://en.wikipedia.org/wiki/FIFA_World_Rankings (9 Feb 2017)
 		
-		BSTree<Integer> tree = new LBSTree();
+		BSTree<Integer> tree = new LBSTree<>();
 		tree.insert("Argentina", 1635);
 		tree.insert("Brazil", 1529);
 		tree.insert("Germany", 1433);
