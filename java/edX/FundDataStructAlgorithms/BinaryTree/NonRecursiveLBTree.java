@@ -118,7 +118,7 @@ public class NonRecursiveLBTree<E> implements BTree<E> {
     
     public int height() {
         // ... (to complete)
-        if (null == info) return 0;
+        if (null == info) return -1;
         return 1 + Math.max( (null == left ? -1 : left.height()), (null == right ? -1 : right.height()) );
     }
     

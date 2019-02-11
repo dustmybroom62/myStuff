@@ -120,5 +120,30 @@ public class Path {
         return sPath;
     }
     
+	/* 
+	 * Checks whether two paths are equals.
+	 * Two paths are equals if they consist of the same sequence of steps. 
+	 */
+    public boolean equals(Object o) {
+
+    	Path otherPath = (Path) o;
+    	PathStep s = first;
+    	PathStep os = otherPath.first;
+    	
+    	// Strictly, it should also check that s.prev and os.prev are null
+    	// but we are assuming the path is correctly built
+    	
+    	while ((s != null) && (os != null)) {
+    		if ((s.getRow() != os.getRow()) || (s.getCol() != os.getCol())) {
+    			return false;
+    		}
+    		s = s.getNext();
+    		os = os.getNext();
+    	}
+    	
+    	// If both paths are equal, both s and os should be null
+    	return s == os;
+
+    }
 
 }

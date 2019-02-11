@@ -71,6 +71,7 @@ public class LBSTree<E> implements BSTree<E> {
 	public void insert(Comparable key, E info) {
 		if(isEmpty()) {
 			root = new LBSNode<E>(key, info, new LBSTree<E>(), new LBSTree<E>());
+			setRemoved(false);
 		} else {
 			if(root.getKey().compareTo(key)>0) {
 				getLeft().insert(key, info);
@@ -105,6 +106,7 @@ public class LBSTree<E> implements BSTree<E> {
         if (0 > comp) return getLeft().extract(key);
         else if (0 < comp) return getRight().extract(key);
         else {
+			if (isRemoved()) return null;
             E info = getInfo();
             setRemoved(true);
             return info;
