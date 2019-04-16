@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import * as _lang from './assets/language.en.json';
+import { Injectable, isDevMode } from '@angular/core';
+import { languageData } from './assets/language.en.json';
 import * as _over from './assets/language.en.1.json';
 
 @Injectable({
@@ -13,6 +13,35 @@ export class LanguageService {
    }
 
   public getValues(section: string): any {
-    return Object.assign(_lang.values[section], _over.values[section]);
+    return _over.values[section];
+  }
+
+  public getSection(langData: any, name: string): any {
+    // if dev, post langData to server to update overrides DB
+    if (isDevMode()) {
+      console.log("getSection: in Dev mode", langData);
+    }
+
+    // using languageData from static json file for now.
+    // static json will be replaced by web service call for current language.
+    const noResults = {values: []};
+    let targetList = langData.sections.filter(e => e.name == name);
+    if ( !targetList || 0 == targetList.length) {
+      return noResults;
+    }
+    let target = targetList[0];
+    let overList = languageData.sections.filter(e => e.name == name);
+    if ( !overList || 0 == overList.length) {
+      return target;
+    }
+    let over = overList[0];
+    for (let field of target.values) {
+      let sourceList = over.values.filter(e => e.name == field.name);
+      if (sourceList && 0 != sourceList.length) {
+        field.title = sourceList[0].title;
+      }
+    }
+    //console.log("section:", result);
+    return target;
   }
 }

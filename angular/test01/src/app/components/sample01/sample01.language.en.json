@@ -14,23 +14,6 @@
                     },
                     {
                         "name": "field02",
-                        "title": "field02 override title",
-                        "maxChars": "30",
-                        "description": "field02 of sample01"
-                    }
-                ]
-            },
-            {
-                "name": "sample02",
-                "values": [
-                    {
-                        "name": "field01",
-                        "title": "field01 override title",
-                        "maxChars": "30",
-                        "description": "field01 of sample01"
-                    },
-                    {
-                        "name": "field02",
                         "title": "field02 title",
                         "maxChars": "30",
                         "description": "field02 of sample01"
