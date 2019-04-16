@@ -1,0 +1,10 @@
+{
+    "values" : {
+        "section01": {
+        "welcome": "override english welcome."
+        },
+        "section02": {
+            "bogus": "override bogus message."
+        }
+    }
+}
