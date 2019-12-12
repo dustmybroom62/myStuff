@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .slice {
+            /* position: absolute; */
+            width: 100%;
+            height: 100%;
+            /* clip: rect(0px, 100px, 200px, 0px); */
+            border-radius: 10%;
+            background-color: green;
+            /* border-top: 100px solid red; */
+            /* border-left: 100px solid red;
+            border-bottom: 100px solid transparent; */
+            /* border-right: 100px solid transparent; */
+            /* rotate: 45; */
+        }
+
+        .hold {
+            padding: 16px;
+            /* position: relative; */
+            width: var(--holdW, 86);
+            height: var(--holdH, 36);
+            /* clip-path: polygon(50% 0%, 50% 5%, 0% 5%, 0% 0%); */
+            /* clip-path: polygon(50% 0, 0 0, 0 100%, 100% 100%, 100% 0, 63% 0, 63% 20px, 910px 20px, 910px 410px, 20px 410px, 20px 20px, 50% 20px); */
+            background-color: green;
+            border: 20px solid blue;
+            border-radius: 50px;
+            /* overflow: hidden; */
+        }
+    </style>
+</head>
+
+<body>
+    <div style="background-color: beige;">
+        <div>
+            <label>percent complete</label>
+            <input type="number" id="txtProgressPct" value="75" />
+            <button onclick="doProgress(document.all.txtProgressPct.value)">Go</button>
+        </div>
+        <!-- <div class="hold" style="--holdW: 860; --holdH: 360">
+            <div class="slice"></div>
+        </div> 
+        -->
+        <svg width="1050" height="410" viewBox="0 0 1200 560">
+            <g xmlns="http://www.w3.org/2000/svg" id="outer_wall" data-name="outer wall" transform="translate(10 10)"
+                fill="#d6d6d6" stroke="#707070" stroke-width="8">
+                <rect width="1180" height="540" rx="112" /> <!-- stroke="none" /> -->
+                <!-- <rect width="1180" height="540" rx="112" fill="none" /> -->
+                <path id="pathProgressRace" d=" M 590 12" stroke="#0a5da8" stroke-width="30" fill="none" />
+
+                <g xmlns="http://www.w3.org/2000/svg" id="infield" data-name="infield" transform="translate(31 30)"
+                    fill="#37ba2b" stroke="#707070" stroke-width="8">
+                    <rect width="1118" height="480" rx="82" />
+
+                    <line xmlns="http://www.w3.org/2000/svg" id="Line_12_OClock" data-name="Line 12_OClock" y2="26"
+                        transform="translate(559 0)" fill="none" stroke="#707070" stroke-width="8" />
+                    <line xmlns="http://www.w3.org/2000/svg" id="Line_11_OClock" data-name="Line 11_OClock" y2="26"
+                        transform="translate(279.5 0)" fill="none" stroke="#707070" stroke-width="8" />
+                    <line xmlns="http://www.w3.org/2000/svg" id="Line_10_OClock" data-name="Line 10_OClock" x2="18"
+                        y2="18" transform="translate(24 24)" fill="none" stroke="#707070" stroke-width="8" />
+                    <line xmlns="http://www.w3.org/2000/svg" id="Line_09_OClock" data-name="Line 09_OClock" x2="26"
+                        transform="translate(0 240)" fill="none" stroke="#707070" stroke-width="8" />
+                    <line xmlns="http://www.w3.org/2000/svg" id="Line_08_OClock" data-name="Line 08_OClock" x2="18"
+                        y2="-18" transform="translate(24 456)" fill="none" stroke="#707070" stroke-width="8" />
+                    <line xmlns="http://www.w3.org/2000/svg" id="Line_07_OClock" data-name="Line 07_OClock" y2="-26"
+                        transform="translate(279.5 480)" fill="none" stroke="#707070" stroke-width="8" />
+                    <line xmlns="http://www.w3.org/2000/svg" id="Line_06_OClock" data-name="Line 06_OClock" y2="-26"
+                        transform="translate(559 480)" fill="none" stroke="#707070" stroke-width="8" />
+                    <line xmlns="http://www.w3.org/2000/svg" id="Line_05_OClock" data-name="Line 05_OClock" y2="-26"
+                        transform="translate(838.5 480)" fill="none" stroke="#707070" stroke-width="8" />
+                    <line xmlns="http://www.w3.org/2000/svg" id="Line_04_OClock" data-name="Line 04_OClock" x2="-18"
+                        y2="-18" transform="translate(1094 456)" fill="none" stroke="#707070" stroke-width="8" />
+                    <line xmlns="http://www.w3.org/2000/svg" id="Line_03_OClock" data-name="Line 09_OClock" x2="-26"
+                        transform="translate(1118 240)" fill="none" stroke="#707070" stroke-width="8" />
+                    <line xmlns="http://www.w3.org/2000/svg" id="Line_02_OClock" data-name="Line 02_OClock" x2="-18"
+                        y2="18" transform="translate(1094 24)" fill="none" stroke="#707070" stroke-width="8" />
+                    <line xmlns="http://www.w3.org/2000/svg" id="Line_01_OClock" data-name="Line 01_OClock" y2="26"
+                        transform="translate(838.5 0)" fill="none" stroke="#707070" stroke-width="8" />
+
+                    <g xmlns="http://www.w3.org/2000/svg" stroke="#fff" stroke-width="1" id="infield_text">
+                        <text xmlns="http://www.w3.org/2000/svg" id="PLUS" transform="translate(559 150)" fill="#0a5da8"
+                            font-family="Helvetica-BoldOblique, Helvetica"
+                            stroke="none">
+                            <tspan text-anchor="middle"font-size="28" font-weight="500">PLUS<tspan font-size="50" font-weight="700"> 2000 </tspan>BONUS
+                            </tspan>
+                        </text> <text xmlns="http://www.w3.org/2000/svg" id="CONSECUTIVE_LAPS_COMPLETED"
+                            data-name="CONSECUTIVE LAPS COMPLETED" transform="translate(559 220)" fill="#fff"
+                            font-size="40" font-family="Helvetica-BoldOblique, Helvetica" font-weight="500"
+                            font-style="oblique">
+                            <tspan x="0" y="0" text-anchor="middle">CONSECUTIVE LAPS COMPLETED</tspan>
+                        </text>
+                        <text xmlns="http://www.w3.org/2000/svg" id="_5" data-name="5" transform="translate(559 320)"
+                            fill="#fff" font-size="160" font-family="Helvetica-BoldOblique, Helvetica"
+                            font-weight="500">
+                            <tspan x="-50" y="36">5</tspan>
+                        </text>
+
+                        <text xmlns="http://www.w3.org/2000/svg" id="points_12_OClock" data-name="points 12_OClock"
+                            transform="translate(559 60)" fill="#fff"
+                            font-family="Helvetica-BoldOblique, Helvetica" font-weight="500">
+                            <tspan text-anchor="middle" font-size="30">2000</tspan>
+                            <tspan text-anchor="middle" x="0" dy="24" font-size="22">points</tspan>
+                        </text>
+                        <text xmlns="http://www.w3.org/2000/svg" id="points_09_OClock" data-name="points 09_OClock"
+                            transform="translate(40 240)" fill="#fff"
+                            font-family="Helvetica-BoldOblique, Helvetica" font-weight="500">
+                            <tspan text-anchor="start" font-size="30">2000</tspan>
+                            <tspan text-anchor="start" x="0" dy="24" font-size="22">points</tspan>
+                        </text>
+                        <text xmlns="http://www.w3.org/2000/svg" id="points_06_OClock" data-name="points 06_OClock"
+                            transform="translate(559 420)" fill="#fff"
+                            font-family="Helvetica-BoldOblique, Helvetica" font-weight="500">
+                            <tspan text-anchor="middle" font-size="30">2000</tspan>
+                            <tspan text-anchor="middle" x="0" dy="24" font-size="22">points</tspan>
+                        </text>
+                        <text xmlns="http://www.w3.org/2000/svg" id="points_03_OClock" data-name="points 03_OClock"
+                            transform="translate(1078 240)" fill="#fff"
+                            font-family="Helvetica-BoldOblique, Helvetica" font-weight="500">
+                            <tspan text-anchor="end" font-size="30">2000</tspan>
+                            <tspan text-anchor="end" x="0" dy="24" font-size="22">points</tspan>
+                        </text>
+                    </g>
+                </g>
+
+
+
+
+        </svg>
+    </div>
+</body>
+<script>
+    function calcArcEnd(leg, pct) {
+        const radius = leg.arc;
+        // if (1 <= pct) { return { x: radius, y: radius }; }
+        const radians = 1.570796326794897;
+        const angle = (radians * pct) + (radians * (leg.turn - 1));
+        let x = Math.cos(angle) * radius;
+        let y = Math.sin(angle) * radius;
+        switch (leg.turn) {
+            case 2:
+                y = radius - y; // good
+                break;
+            case 3:
+                x = radius + x; // good
+                break;
+            case 4:
+                y = radius + y; // good
+                break;
+            case 1:
+                x = radius - x; // good
+                break;
+        }
+        // if (1 == leg.dx) { x = radius - x; }
+        // if (-1 == leg.dy) { y = radius - y; }
+
+        return { x: x, y: y };
+    }
+
+    var _startPath = null;
+    function buildSVGPath(p) {
+        const legs = [
+            { limit: 15, length: -478, method: 'h' },
+            { limit: 5, arc: 100, method: 'a', dx: 1, dy: 1, turn: 2 },
+            { limit: 10, length: 316, method: 'v' },
+            { limit: 5, arc: 100, method: 'a', dx: 1, dy: -1, turn: 3 },
+            { limit: 30, length: 956, method: 'h' },
+            { limit: 5, arc: 100, method: 'a', dx: 1, dy: -1, turn: 4 },
+            { limit: 10, length: -316, method: 'v' },
+            { limit: 5, arc: 100, method: 'a', dx: -1, dy: -1, turn: 1 },
+            { limit: 15, length: -478, method: 'h' }
+        ];
+        let path = _startPath;
+        if (0 >= p) { return path; }
+
+        let pct = p;
+        if (100 < pct) { pct %= 100; }
+        for (let i = 0; i < legs.length; i++) {
+            if (pct <= 0) { break; }
+            const leg = legs[i];
+            if (leg.arc) {
+                const length = Math.min(pct, leg.limit) / leg.limit;
+                const position = calcArcEnd(leg, length);
+                path += ' ' + leg.method + leg.arc + ',' + leg.arc + ',0,0,0,' + leg.dx * position.x + ',' + leg.dy * position.y;
+            } else {
+                const length = leg.length * (Math.min(pct, leg.limit) / leg.limit);
+                path += ' ' + leg.method + length;
+            }
+
+            pct -= leg.limit;
+        }
+        return path;
+    }
+
+    function doProgress(p) {
+        const elPath = document.querySelector('#pathProgressRace');
+        if (!_startPath) { _startPath = elPath.attributes['d'].value; }
+        const path = buildSVGPath(+p);
+        elPath.attributes['d'].value = path;
+    }
+
+    function anim(c, msec) {
+        if (c > 99) { doProgress(0); return; }
+        doProgress(++c);
+        window.setTimeout(anim, msec, c, msec);
+    }
+
+    anim(0, 90);
+</script>
+
+</html>
