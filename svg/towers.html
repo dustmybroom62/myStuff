@@ -1,17 +1,22 @@
 <html>
 
 <head>
-<style>
-    .hidden { display: none; }
-    .visible { display: block; }
-</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        .game-controls {
+            font-size: 24px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .hidden { display: none; }
+        .visible { display: block; }
+    </style>
 </head>
 
 <body>
     <div>
-        <label>Rings: </label>
-        <input id="txtRings" type="number" min="3" max="7" value="7" />
-        <button onclick="onNewGame(document.all.txtRings.value)">New Game</button>
+        <label class="game-controls">Rings: </label class="game-controls">
+        <input id="txtRings" class="game-controls" type="number" min="3" max="7" value="7" />
+        <button class="game-controls" onclick="onNewGame(document.all.txtRings.value)">New Game</button class="game-controls">
     </div>
 
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600px" height="200px"
@@ -70,7 +75,7 @@
         this.rings = [];
     }
     function game(rings) {
-        this.rings = rings;
+        this.rings = +rings;
         this.inProgress = false;
         this.posts = [];
         this.source = -1;
@@ -126,16 +131,17 @@ function onHotClick(idx) {
             g.dest = -1;
         }
     } else {
-        g.source = idx;
         const post = g.posts[idx];
         const ring = post.rings.pop();
+        if (!ring) { return; }
+        g.source = idx;
         ring.select(post.yTop);
         g.selected = ring;
     }
 }
 
 function onNewGame(rings) {
-    theGame = new game(rings);
+    theGame = new game(+rings);
     theGame.init();
 }
 
