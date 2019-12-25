@@ -8,6 +8,11 @@
 </head>
 
 <body>
+    <div>
+        <label>Rings: </label>
+        <input id="txtRings" type="number" min="3" max="7" value="7" />
+        <button onclick="onNewGame(document.all.txtRings.value)">New Game</button>
+    </div>
 
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600px" height="200px"
         viewBox="0 0 600 200" preserveAspectRatio="xMidYMid meet">
@@ -45,11 +50,11 @@
         this.visible = visible;
         this.element = document.querySelector('#ring_' + value);
         if (!!this.element) {
-            this.element.attributes['class'] = this.visible ? 'visible' : 'hidden';
+            this.element.setAttribute('class', this.visible ? 'visible' : 'hidden');
         }
 
         this.transform = function() {
-            this.element.attributes['transform'].value = 'translate(' + this.tx + ' ' + this.ty + ')';
+            this.element.attributes['transform'].value = 'translate(' + this.tx + ',' + this.ty + ')';
         }
         this.transform();
 
@@ -65,32 +70,75 @@
         this.rings = [];
     }
     function game(rings) {
+        this.rings = rings;
+        this.inProgress = false;
         this.posts = [];
         this.source = -1;
         this.dest = -1;
+        this.selected = null;
+
         this.init = function() {
+            this.inProgress = true;
             for (let i = 0; i < 3; i++) {
                 this.posts.push(new post(150 + (i * 150), 40, 190));
             }
-            const startPost = Object.assign({}, this.posts[0])
+            const startPost = new post(this.posts[0].x, this.posts[0].yTop, this.posts[0].yBottom);
             const ringHeight = 20;
             for (let i = 0; i < 7; i++) {
                 startPost.rings.push(new ring(
                     i, -20 - (i * 6), 0, null, 40 + (i * 12), ringHeight, startPost.x, 50 + (i * ringHeight), (i < rings) )
                 );
             }
-
+            const post0 = this.posts[0];
+            for (let i = 0; i < 7; i++) {
+                const ring = startPost.rings.pop();
+                if (ring.value < rings) {
+                    post0.rings.push(ring);
+                    ring.ty = post0.yBottom - (ring.height * post0.rings.length);
+                    ring.transform();
+                }
+            }
         };
     }
-    var theGame = new game(3);
-    theGame.init();
+    var theGame = null;
 
 function onHotClick(idx) {
     const g = theGame;
-    g.source = idx;
-    const ring = g.posts(idx).pop();
-
+    if (!g || !g.inProgress) { return; }
+    if (!!g.selected) {
+        g.dest = idx;
+        const post = g.posts[idx];
+        const temp = post.rings.pop();
+        if (!temp || g.selected.value < temp.value) {
+            // put back temp and put selected on top
+            if (!!temp) { post.rings.push(temp); }
+            post.rings.push(g.selected);
+            g.selected.tx = post.x;
+            g.selected.ty = post.yBottom - (g.selected.height * post.rings.length);
+            g.selected.transform();
+            g.selected = null;
+            g.source = g.dest = -1;
+            if (idx === 2 && post.rings.length === g.rings) { g.inProgress = false; }
+        } else {
+            if (!!temp) {
+                post.rings.push(temp);
+            }
+            g.dest = -1;
+        }
+    } else {
+        g.source = idx;
+        const post = g.posts[idx];
+        const ring = post.rings.pop();
+        ring.select(post.yTop);
+        g.selected = ring;
+    }
 }
+
+function onNewGame(rings) {
+    theGame = new game(rings);
+    theGame.init();
+}
+
 </script>
 
 </html>
