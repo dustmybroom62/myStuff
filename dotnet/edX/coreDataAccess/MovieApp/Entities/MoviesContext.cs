@@ -2,11 +2,16 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
 
 namespace MovieApp.Entities
 {
     public partial class MoviesContext : DbContext
     {
+        public static readonly LoggerFactory MyLoggerFactory
+            = new LoggerFactory(new[] {new ConsoleLoggerProvider((category, level) => true, true)});        
+
         public MoviesContext()
         {
         }
@@ -26,6 +31,7 @@ namespace MovieApp.Entities
         {
             if (!optionsBuilder.IsConfigured)
             {
+                optionsBuilder.UseLoggerFactory(MyLoggerFactory);
                 var builder = new ConfigurationBuilder();
                 builder.AddUserSecrets<Program>();
                 IConfigurationRoot configuration = builder.Build();
@@ -68,7 +74,7 @@ namespace MovieApp.Entities
 
                 entity.Property(e => e.Description).HasColumnType("text");
 
-                entity.Property(e => e.Rating).HasColumnType("varchar(45)");
+                // entity.Property(e => e.Rating).HasColumnType("varchar(45)");
 
                 entity.Property(e => e.ReleaseYear).HasColumnType("int(11)");
 
