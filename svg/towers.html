@@ -1,0 +1,96 @@
+<html>
+
+<head>
+<style>
+    .hidden { display: none; }
+    .visible { display: block; }
+</style>
+</head>
+
+<body>
+
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600px" height="200px"
+        viewBox="0 0 600 200" preserveAspectRatio="xMidYMid meet">
+        <rect id="svgEditorBackground" x="0" y="0" width="600" height="200" fill="none" stroke="black" />
+        <rect id="post_0" x="144" y="40" fill="brown" width="12" height="160" />
+        <rect id="base_0" x="100" y="190" fill="brown" width="100" height="10" />
+        <rect id="post_1" x="294" y="40" fill="brown" width="12" height="160" />
+        <rect id="base_1" x="250" y="190" fill="brown" width="100" height="10" />
+        <rect id="post_2" x="444" y="40" fill="brown" width="12" height="160" />
+        <rect id="base_2" x="400" y="190" fill="brown" width="100" height="10" />
+        <rect id="ring_0" x="-20" y="0" class="visible" transform="translate(150 50)" fill="deeppink" width="40" height="20" rx="50%" ry="50%" />
+        <rect id="ring_1" x="-26" y="0" class="visible" transform="translate(150 70)" fill="green" width="52" height="20" rx="50%" ry="50%" />
+        <rect id="ring_2" x="-32" y="0" class="visible" transform="translate(150 90)" fill="blue" width="64" height="20" rx="50%" ry="50%" />
+        <rect id="ring_3" x="-38" y="0" class="visible" transform="translate(150 110)" fill="orange" width="76" height="20" rx="50%" ry="50%" />
+        <rect id="ring_4" x="-44" y="0" class="visible" transform="translate(150 130)" fill="purple" width="88" height="20" rx="50%" ry="50%" />
+        <rect id="ring_5" x="-50" y="0" class="visible" transform="translate(150 150)" fill="aqua" width="100" height="20" rx="50%" ry="50%" />
+        <rect id="ring_6" x="-56" y="0" class="visible" transform="translate(150 170)" fill="red" width="112" height="20" rx="50%" ry="50%" />
+        <rect id="hotspot_0" width="150" height="100%" x="75" y="0" fill="transparent" onclick="onHotClick(0)" />
+        <rect id="hotspot_1" width="150" height="100%" x="225" y="0" fill="transparent" onclick="onHotClick(1)" />
+        <rect id="hotspot_2" width="150" height="100%" x="375" y="0" fill="transparent" onclick="onHotClick(2)" />
+    </svg>
+
+</body>
+
+<script>
+    function ring(value, x, y, fill, width, height, tx, ty, visible) {
+        this.value = value;
+        this.x = x;
+        this.y = y;
+        this.fill = fill;
+        this.width = width;
+        this.height = height;
+        this.tx = tx;
+        this.ty = ty;
+        this.visible = visible;
+        this.element = document.querySelector('#ring_' + value);
+        if (!!this.element) {
+            this.element.attributes['class'] = this.visible ? 'visible' : 'hidden';
+        }
+
+        this.transform = function() {
+            this.element.attributes['transform'].value = 'translate(' + this.tx + ' ' + this.ty + ')';
+        }
+        this.transform();
+
+        this.select = function(ty) {
+            this.ty = ty - this.height - 10;
+            this.transform();
+        }
+    }
+    function post(x, yTop, yBottom) {
+        this.x = x;
+        this.yTop = yTop;
+        this.yBottom = yBottom;
+        this.rings = [];
+    }
+    function game(rings) {
+        this.posts = [];
+        this.source = -1;
+        this.dest = -1;
+        this.init = function() {
+            for (let i = 0; i < 3; i++) {
+                this.posts.push(new post(150 + (i * 150), 40, 190));
+            }
+            const startPost = Object.assign({}, this.posts[0])
+            const ringHeight = 20;
+            for (let i = 0; i < 7; i++) {
+                startPost.rings.push(new ring(
+                    i, -20 - (i * 6), 0, null, 40 + (i * 12), ringHeight, startPost.x, 50 + (i * ringHeight), (i < rings) )
+                );
+            }
+
+        };
+    }
+    var theGame = new game(3);
+    theGame.init();
+
+function onHotClick(idx) {
+    const g = theGame;
+    g.source = idx;
+    const ring = g.posts(idx).pop();
+
+}
+</script>
+
+</html>
