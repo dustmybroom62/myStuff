@@ -53,20 +53,36 @@
         this.tx = tx;
         this.ty = ty;
         this.visible = visible;
+        this.dest = {x: -1, y: -1};
+        this.animSpeed = 1;
+
         this.element = document.querySelector('#ring_' + value);
         if (!!this.element) {
             this.element.setAttribute('class', this.visible ? 'visible' : 'hidden');
         }
 
+        this.move = function(dest, speed) {
+            this.dest = dest;
+            this.animSpeed = speed;
+        };
+
+        this.animate = function() {
+            this.tx = Math.min(this.tx + this.animSpeed, this.dest.x);
+            if (this.tx < this.dest.x) { requestAnimationFrame( this.animate.bind(this) ); }
+            else {
+                this.ty = Math.min(this.ty + this.animSpeed, this.dest.y);
+            }
+        };
+
         this.transform = function() {
             this.element.attributes['transform'].value = 'translate(' + this.tx + ',' + this.ty + ')';
-        }
+        };
         this.transform();
 
         this.select = function(ty) {
             this.ty = ty - this.height - 10;
             this.transform();
-        }
+        };
     }
     function post(x, yTop, yBottom) {
         this.x = x;
@@ -81,6 +97,7 @@
         this.source = -1;
         this.dest = -1;
         this.selected = null;
+        this.animSpeed = 1;
 
         this.init = function() {
             this.inProgress = true;
@@ -118,12 +135,10 @@ function onHotClick(idx) {
             // put back temp and put selected on top
             if (!!temp) { post.rings.push(temp); }
             post.rings.push(g.selected);
-            g.selected.tx = post.x;
-            g.selected.ty = post.yBottom - (g.selected.height * post.rings.length);
-            g.selected.transform();
+            g.selected.move( { x: post.x, y: post.yBottom - (g.selected.height * post.rings.length) }, g.animSpeed);
             g.selected = null;
             g.source = g.dest = -1;
-            if (idx === 2 && post.rings.length === g.rings) { g.inProgress = false; }
+            if (idx !== 0 && post.rings.length === g.rings) { g.inProgress = false; }
         } else {
             if (!!temp) {
                 post.rings.push(temp);
