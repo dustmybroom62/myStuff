@@ -1,16 +1,23 @@
 ﻿using System;
-using System.Linq;
-using MovieApp.Entities;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using MovieAPI.Entities;
 
-namespace MovieApp
+namespace MovieAPI.Controllers
 {
-    class Program
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ValuesController : ControllerBase
     {
-        static void Main(string[] args)
+        MoviesContext context;
+        public ValuesController(MoviesContext _context) {
+            context = _context;
+        }
+        // GET api/values
+        [HttpGet]
+        public ActionResult<IEnumerable<Film>> Get()
         {
             var context = new MoviesContext();
             // Console.WriteLine(context.Film.Count().ToString());
@@ -67,13 +74,41 @@ namespace MovieApp
                 // Console.WriteLine($"\t {film.fa.ActorId}");
                 exist.FilmActor.Add(film.fa);
             }
-            Console.WriteLine($"-------------------- {counter} records ----------------------");
-            foreach(var film in films) {
-                Console.WriteLine(film.Title);
-                foreach(var fa in film.FilmActor) {
-                Console.WriteLine($"\t {fa.ActorId}");
-                }
-            }
+            // Console.WriteLine($"-------------------- {counter} records ----------------------");
+            // foreach(var film in films) {
+            //     Console.WriteLine(film.Title);
+            //     foreach(var fa in film.FilmActor) {
+            //     Console.WriteLine($"\t {fa.ActorId}");
+            //     }
+            // }
+
+            // return new string[] { "value1", "value2" };
+            return films;
+        }
+
+        // GET api/values/5
+        [HttpGet("{id}")]
+        public ActionResult<string> Get(int id)
+        {
+            return "value";
+        }
+
+        // POST api/values
+        [HttpPost]
+        public void Post([FromBody] string value)
+        {
+        }
+
+        // PUT api/values/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] string value)
+        {
+        }
+
+        // DELETE api/values/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
         }
     }
 }

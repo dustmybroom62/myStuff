@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MovieApp.Entities
+namespace MovieAPI.Entities
 {
     public partial class Film
     {

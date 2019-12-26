@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
 
-namespace MovieApp.Entities
+namespace MovieAPI.Entities
 {
     public partial class MoviesContext : DbContext
     {
@@ -29,15 +29,8 @@ namespace MovieApp.Entities
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseLoggerFactory(MyLoggerFactory);
-                var builder = new ConfigurationBuilder();
-                builder.AddUserSecrets<Program>();
-                IConfigurationRoot configuration = builder.Build();
-                string connStr = configuration.GetConnectionString("DefaultConnection");
-                optionsBuilder.UseMySql(connStr);
-            }
+            base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseLoggerFactory(MyLoggerFactory);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
