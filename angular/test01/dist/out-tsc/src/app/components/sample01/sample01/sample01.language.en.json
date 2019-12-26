@@ -1,0 +1,17 @@
+{
+    "languageData": {
+        "languageName": "english",
+        "languageCode": "en",
+        "sections": {
+            "sample01": {
+                "values": {
+                    "field1": {
+                        "title": "field01 title",
+                        "maxChars": "30",
+                        "description": "field01 of sample01"
+                    }
+                }
+            }
+        }
+    }
+}

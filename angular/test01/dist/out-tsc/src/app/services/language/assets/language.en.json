@@ -1,0 +1,14 @@
+{
+    "values": {
+        "section01": {
+            "welcome": "This is the english welcome.",
+            "bogus": "This is a bogus message in english.",
+            "links": "Here are some links to help you start: (english) "
+        },
+        "section02": {
+            "welcome": "section 2 english welcome.",
+            "bogus": "section 2 bogus english message.",
+            "links": "section 2 links: (english)"
+        }
+    }
+}
