@@ -38,6 +38,38 @@ namespace CrosswordSolver
         static Dictionary<int, List<string>> wordLists = null;
         static void Main(string[] args)
         {
+            // RunCrosswordSolver();
+            RunAlgorithms3();
+            // RunAlgorithms4();
+            // RunAlgorithms5();
+        }
+
+        static void RunAlgorithms3() {
+            List<string> list1 = AlgorithmAnalysis.Algorithms3.SortByLastNameThenFirstName();
+            foreach (string item in list1) {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("-".PadRight(50, '-'));
+            
+            List<string> list2 = AlgorithmAnalysis.Algorithms3.CountsByFirstName();
+            foreach (string item in list2) {
+                Console.WriteLine(item);
+            }
+        }
+
+        static void RunAlgorithms4() {
+            var al4 = new AlgorithmAnalysis.Algorithms4();
+            al4.SaveLines("english.csv", "al4out.txt");
+        }
+
+        static void RunAlgorithms5() {
+            var al5 = new AlgorithmAnalysis.Algorithms5();
+            al5.Init();
+            var result = al5.GetRecord(3, 4);
+            Console.WriteLine($"3, 4 - {result.Value}");
+        }
+
+        static void RunCrosswordSolver() {
             var sw = new Stopwatch();
             sw.Start();
             Setup();

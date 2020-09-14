@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace AlgorithmAnalysis
 {
@@ -11,7 +12,10 @@ namespace AlgorithmAnalysis
             // then first name, then age. Use the format: "{LastName} - {FirstName} - {Age}"
             //
             // Example string: Burgundy - Ron - 43
-            return new List<string>();
+            var result = _People.OrderBy(x => x.LastName).ThenBy(x => x.FirstName).ThenBy(x => x.Age)
+                .Select(x => $"{x.LastName} - {x.FirstName} - {x.Age}");
+            return result.ToList();
+            // return new List<string>();
         }
 
         public static List<string> CountsByFirstName()
@@ -21,7 +25,13 @@ namespace AlgorithmAnalysis
             // look like this:
             //
             // Example string: Ron, 2
-            return new List<string>();
+            var result = _People.GroupBy(x => x.FirstName).Select(g => new {
+                FirstName = g.Key,
+                Count = g.Count()
+            }).OrderBy(x => x.Count)
+            .Select(x => $"{x.FirstName}, {x.Count}");
+            return result.ToList();
+            // return new List<string>();
         }
 
         public static List<Person> _People =
