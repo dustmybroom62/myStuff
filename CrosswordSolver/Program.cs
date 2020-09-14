@@ -39,9 +39,17 @@ namespace CrosswordSolver
         static void Main(string[] args)
         {
             // RunCrosswordSolver();
-            RunAlgorithms3();
+            RunAlgorithms2();
+            // RunAlgorithms3();
             // RunAlgorithms4();
             // RunAlgorithms5();
+        }
+
+        static void RunAlgorithms2() {
+            List<int> n = new List<int>(new int[] {1,2,3,4,5,6,7,8,9,10});
+            foreach (List<int> list in AlgorithmAnalysis.Algorithms2.Batch<int>(n, 3)) {
+                Console.WriteLine(string.Join(", ", list.ToArray()) );
+            }
         }
 
         static void RunAlgorithms3() {

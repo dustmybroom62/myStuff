@@ -9,6 +9,18 @@ namespace AlgorithmAnalysis
         public static IEnumerable<List<T>> Batch<T>(this IEnumerable<T> enumerable, int maxBatchSize)
         {
             // Code...
+            int idx = 0;
+            List<T> result = new List<T>();
+            foreach (T item in enumerable) {
+                if (idx++ < maxBatchSize) { result.Add(item); }
+                else {
+                    yield return result;
+                    idx = 1;
+                    result = new List<T>();
+                    result.Add(item);
+                }
+            }
+            yield return result;
             yield break;
         }
     }
