@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace AlgorithmAnalysis
 {
@@ -23,7 +24,20 @@ namespace AlgorithmAnalysis
          *      The order of priorities for the solution should be: Correctness, Elegance/Style, and Performance.
         */
         public static bool IsValid(GrowthTable t)
-        {            
+        {
+            List<bool> weeks = new List<bool>();
+            decimal total = 0m;
+            for (int i = 0; i < 53; i++) { weeks.Add(false); }
+            foreach (GrowthTableRow row in t.Rows) {
+                if (row.StartWeek >= row.EndWeek) { return false; }
+                for (int w = row.StartWeek - 1; w < row.EndWeek; w++) {
+                    if (weeks[w]) { return false; }
+                    weeks[w] = true;
+                }
+                total += row.GrowthPct;
+            }
+            if (1m != total) { return false; }
+            if (weeks.Any(x => !x)) { return false; }
             return true;
         }
     }

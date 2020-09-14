@@ -38,11 +38,29 @@ namespace CrosswordSolver
         static Dictionary<int, List<string>> wordLists = null;
         static void Main(string[] args)
         {
-            // RunCrosswordSolver();
+            Console.WriteLine($"{"+".PadRight(20, '+')} RunCrosswordSolver {"+".PadRight(20, '+')}");
+            RunCrosswordSolver();
+            Console.WriteLine($"{"+".PadRight(20, '+')} RunAlgorithms1 {"+".PadRight(20, '+')}");
+            RunAlgorithms1();
+            Console.WriteLine($"{"+".PadRight(20, '+')} RunAlgorithms2 {"+".PadRight(20, '+')}");
             RunAlgorithms2();
-            // RunAlgorithms3();
-            // RunAlgorithms4();
-            // RunAlgorithms5();
+            Console.WriteLine($"{"+".PadRight(20, '+')} RunAlgorithms3 {"+".PadRight(20, '+')}");
+            RunAlgorithms3();
+            Console.WriteLine($"{"+".PadRight(20, '+')} RunAlgorithms4 {"+".PadRight(20, '+')}");
+            RunAlgorithms4();
+            Console.WriteLine($"{"+".PadRight(20, '+')} RunAlgorithms5 {"+".PadRight(20, '+')}");
+            RunAlgorithms5();
+        }
+
+        static void RunAlgorithms1() {
+            List<AlgorithmAnalysis.GrowthTableRow> rows = new List<AlgorithmAnalysis.GrowthTableRow>();
+            rows.Add(new AlgorithmAnalysis.GrowthTableRow(1, 4, .1m));
+            rows.Add(new AlgorithmAnalysis.GrowthTableRow(8, 10, .17m));
+            rows.Add(new AlgorithmAnalysis.GrowthTableRow(5, 7, .05m));
+            rows.Add(new AlgorithmAnalysis.GrowthTableRow(11, 53, .68m));
+            AlgorithmAnalysis.GrowthTable gt = new AlgorithmAnalysis.GrowthTable(rows);
+            bool result = AlgorithmAnalysis.Algorithms1.IsValid(gt);
+            Console.WriteLine($"Growth Table Valid == {result}");
         }
 
         static void RunAlgorithms2() {
